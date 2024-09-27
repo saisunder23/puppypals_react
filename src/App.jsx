@@ -1,3 +1,4 @@
+import { puppyList } from './data.js'
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
@@ -5,6 +6,9 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+
+  // Log the puppyList array to the console
+  console.log(puppyList)
 
   return (
     <>
@@ -26,9 +30,31 @@ function App() {
         </p>
       </div>
       <p className="read-the-docs">
-        
         Click on the Vite and React logos to learn more
       </p>
+
+      {/* Render the puppyList array */}
+      <div>
+        <h2>Puppy List</h2>
+        <ul>
+          {puppyList.map((puppy) => (
+            <li key={puppy.id}>
+              <strong>Name:</strong> {puppy.name} <br />
+              <strong>Email:</strong> {puppy.email} <br />
+              <strong>Age:</strong> {puppy.age} <br />
+              <strong>Cuteness:</strong> {puppy.isCute ? 'Yes' : 'No'} <br />
+              <strong>Owner ID:</strong> {puppy.ownerId} <br />
+              <strong>Tricks:</strong> 
+              <ul>
+                {puppy.tricks.map((trick) => (
+                  <li key={trick.id}>{trick.title}</li>
+                ))}
+              </ul>
+              <hr />
+            </li>
+          ))}
+        </ul>
+      </div>
     </>
   )
 }
